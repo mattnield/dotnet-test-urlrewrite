@@ -1,0 +1,3 @@
+<rewriteMap name="FrRewrites" defaultValue="">
+      <add key="/old/article1" value="/new/article-one" />
+</rewriteMap>
