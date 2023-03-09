@@ -22,7 +22,7 @@
       <conditions>
         <add input="{StaticRewrites:{REQUEST_URI}}" pattern="(.+)" />
       </conditions>
-      <action type="Redirect" url="{C:1}" />
+      <action type="Redirect" url="{C:1}" redirectType="Temporary" />
     </rule>
   </rules>
   <rewriteMaps>
@@ -31,6 +31,8 @@
       <add key="/view/index-id" value="/en-us/our-products" />
       <add key="/wildcard/with%" value="/en-us/our-products" />
       <add key="/wildcard/with*" value="/en-us/our-products" />
+      <add key="/with-query" value="/en-us/our-products?query=123" />
+      <add key="/vanity" value="/en-us/stolen-vanity" />
     </rewriteMap>
   </rewriteMaps>
 </rewrite>
