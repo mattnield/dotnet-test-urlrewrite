@@ -1,0 +1,11 @@
+<rewrite>
+  <rules>
+    <rule name="Rewrite Map" stopProcessing="true">
+      <match url="^(.*)" />
+      <conditions logicalGrouping="MatchAll">
+        <add input="{R:1}" pattern="^en\/(.*)" negate="true"/>
+      </conditions>
+      <action type="Redirect" url="en/{R:1}" appendQueryString="true" />
+    </rule>
+  </rules>
+</rewrite>

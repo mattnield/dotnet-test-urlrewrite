@@ -1,0 +1,20 @@
+<rewrite>
+  <rules>
+    <rule name="Rewrite Map" stopProcessing="true">
+      <match url="^(.*)" />
+      <conditions logicalGrouping="MatchAll">
+        <add input="{Simple:{REQUEST_URI}}" pattern="(.+)" />
+      </conditions>
+      <action type="Redirect" url="{C:1}" appendQueryString="true" />
+    </rule>
+  </rules>
+  <rewriteMaps>
+    <rewriteMap name="Simple" defaultValue="">
+      <add key="/view?index-id=10991&amp;col=123" value="/page-with-two-values-one" />
+      <add key="/view?index-id=10991%26col=123" value="/page-with-two-values-two" />
+      <add key="/view?index-id=10991\u0026col=123" value="/page-with-two-values-three" />
+      <add key="/view?index-id=10991" value="/page-wth-one-value" />
+      <add key="/view" value="/page-with-no-values" />
+    </rewriteMap>
+  </rewriteMaps>
+</rewrite>

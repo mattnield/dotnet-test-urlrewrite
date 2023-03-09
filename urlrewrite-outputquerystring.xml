@@ -1,0 +1,13 @@
+<rewrite>
+  <rules>
+    <!-- <rule name="Rewrite Map" stopProcessing="true">
+      <match url="^(.*)" />
+      <action type="Redirect" url="{HTTP_URL}" appendQueryString="false" />
+    </rule> -->
+
+    <rule name="WRite to a new location with a querystring" stopProcessing="true">
+      <match url="^(.*)" />
+      <action type="Redirect" url="mypage?key=1&amp;value=2" appendQueryString="false" />
+    </rule>
+  </rules>
+</rewrite>

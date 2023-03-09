@@ -1,0 +1,38 @@
+<rewrite>
+  <rules>
+    <!-- <rule name="Rewrite Map" stopProcessing="true">
+      <match url="^(.*)" />
+      <action type="Redirect" url="{HTTP_URL}" appendQueryString="false" />
+    </rule> -->
+
+    <rule name="Rewrite Map with Query" stopProcessing="true">
+      <match url="^(.*)" />
+      <conditions logicalGrouping="MatchAll">
+        <add input="{QUERY_STRING}" pattern="(.+)" />
+        <add input="{Simple:{R:1}?{QUERY_STRING}}" pattern="(.+)" />
+      </conditions>
+      <action type="Redirect" url="{C:1}" appendQueryString="false" />
+    </rule>
+
+    <rule name="Rewrite Map without Query" stopProcessing="true">
+      <match url="^(.*)" />
+      <conditions logicalGrouping="MatchAll">
+        <add input="{QUERY_STRING}" pattern="(.+)" negate="true"/>
+        <add input="{Simple:{R:1}}" pattern="(.+)" />
+      </conditions>
+      <action type="Redirect" url="{C:1}" appendQueryString="false" />
+    </rule>
+  </rules>
+
+  <rewriteMaps>
+    <rewriteMap name="Simple" defaultValue="">
+      <add key="/page?id=1" value="page1" />
+      <add key="/page?id=2&amp;val=2" value="page2" />
+
+      <add key="page?id=1" value="page1-r1" />
+      <add key="page?id=2&amp;val=2" value="page2-r1" />
+
+      <add key="new-page" value="page3" />
+    </rewriteMap>
+  </rewriteMaps>
+</rewrite>
